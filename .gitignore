@@ -1,0 +1,7 @@
+out/
+7B/
+13B/
+__pycache__/
+checkpoint**
+minimal-llama**
+upload.py
