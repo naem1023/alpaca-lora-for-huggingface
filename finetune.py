@@ -10,7 +10,7 @@ from peft import prepare_model_for_int8_training, LoraConfig, get_peft_model
 
 
 # optimized for RTX 4090. for larger GPUs, increase some of these?
-MICRO_BATCH_SIZE = 4  # this could actually be 5 but i like powers of 2
+MICRO_BATCH_SIZE = 6  # this could actually be 5 but i like powers of 2
 BATCH_SIZE = 128
 GRADIENT_ACCUMULATION_STEPS = BATCH_SIZE // MICRO_BATCH_SIZE
 EPOCHS = 3  # we don't need 3 tbh
@@ -21,7 +21,7 @@ LORA_ALPHA = 16
 LORA_DROPOUT = 0.05
 
 model_path = os.environ["model_path"]
-
+output_dir = os.environ["output_dir"]
 model = LLaMAForCausalLM.from_pretrained(
     model_path,
 )
@@ -87,12 +87,12 @@ trainer = transformers.Trainer(
         learning_rate=LEARNING_RATE,
         bf16=True,
         logging_steps=1,
-        output_dir="lora-alpaca",
-        save_total_limit=3,
+        output_dir=output_dir,
+        save_total_limit=4,
     ),
     data_collator=transformers.DataCollatorForLanguageModeling(tokenizer, mlm=False),
 )
 model.config.use_cache = False
 trainer.train(resume_from_checkpoint=False)
 
-model.save_pretrained("lora-alpaca")
+model.save_pretrained(output_dir)
