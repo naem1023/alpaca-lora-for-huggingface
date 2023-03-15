@@ -1,0 +1,5 @@
+torch
+loralib
+sentencepice
+datasets
+peft

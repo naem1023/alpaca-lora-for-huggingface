@@ -3,7 +3,6 @@ import os
 # os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 import torch
 import torch.nn as nn
-import bitsandbytes as bnb
 from datasets import load_dataset
 import transformers
 from transformers import AutoTokenizer, AutoConfig, LLaMAForCausalLM, LLaMATokenizer
@@ -23,14 +22,12 @@ LORA_DROPOUT = 0.05
 
 model = LLaMAForCausalLM.from_pretrained(
     "decapoda-research/llama-7b-hf",
-    load_in_8bit=True,
-    device_map="auto",
 )
 tokenizer = LLaMATokenizer.from_pretrained(
     "decapoda-research/llama-7b-hf", add_eos_token=True
 )
 
-model = prepare_model_for_int8_training(model)
+# model = prepare_model_for_int8_training(model)
 
 config = LoraConfig(
     r=LORA_R,
@@ -86,7 +83,7 @@ trainer = transformers.Trainer(
         warmup_steps=100,
         num_train_epochs=EPOCHS,
         learning_rate=LEARNING_RATE,
-        fp16=True,
+        bf16=True,
         logging_steps=1,
         output_dir="lora-alpaca",
         save_total_limit=3,
