@@ -476,24 +476,24 @@ def main():
     def group_texts(examples):
         # Concatenate all texts.
         if examples["input"]:
-            return f"""Below is an instruction that describes a task, paired with an input that provides further context. Write a response that appropriately completes the request.
+            _input = f"""Below is an instruction that describes a task, paired with an input that provides further context. Write a response that appropriately completes the request.
 
-### Instruction:
-{examples["instruction"]}
+    ### Instruction:
+    {examples["instruction"]}
 
-### Input:
-{examples["input"]}
+    ### Input:
+    {examples["input"]}
 
-### Response:
-{examples["output"]}"""
-    else:
-        return f"""Below is an instruction that describes a task. Write a response that appropriately completes the request.
+    ### Response:
+    {examples["output"]}"""
+        else:
+            _input = f"""Below is an instruction that describes a task. Write a response that appropriately completes the request.
 
-### Instruction:
-{examples["instruction"]}
+    ### Instruction:
+    {examples["instruction"]}
 
-### Response:
-{examples["output"]}"""
+    ### Response:
+    {examples["output"]}"""
 
         concatenated_examples = {k: list(chain(*examples[k])) for k in examples.keys()}
         total_length = len(concatenated_examples[list(examples.keys())[0]])
