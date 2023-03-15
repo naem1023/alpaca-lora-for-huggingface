@@ -6,3 +6,5 @@ lora
 datasets
 peft
 accelerate
+evaluate
+scikit-learn

@@ -20,11 +20,13 @@ LORA_R = 4
 LORA_ALPHA = 16
 LORA_DROPOUT = 0.05
 
+model_path = os.environ["model_path"]
+
 model = LLaMAForCausalLM.from_pretrained(
-    "decapoda-research/llama-7b-hf",
+    model_path,
 )
 tokenizer = LLaMATokenizer.from_pretrained(
-    "decapoda-research/llama-7b-hf", add_eos_token=True
+    model_path, add_eos_token=True
 )
 
 # model = prepare_model_for_int8_training(model)
