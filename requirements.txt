@@ -1,5 +1,8 @@
 torch
+git+https://github.com/zphang/transformers@ef61b1ba1a8ee9fd354b640b059c3474b676c0c5
+sentencepiece
 loralib
-sentencepice
+lora
 datasets
 peft
+accelerate
