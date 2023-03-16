@@ -54,6 +54,8 @@ from transformers.trainer_utils import get_last_checkpoint
 from transformers.utils import check_min_version, send_example_telemetry
 from transformers.utils.versions import require_version
 
+from peft import prepare_model_for_int8_training, LoraConfig, get_peft_model
+
 
 logger = logging.getLogger(__name__)
 
@@ -79,6 +81,15 @@ class ModelArguments:
     model_type: Optional[str] = field(
         default=None,
         metadata={"help": "If training from scratch, pass a model type from the list: " + ", ".join(MODEL_TYPES)},
+    )
+    lora_r: Optional[str] = field(
+        default=None,
+    )
+    lora_alpha: Optional[str] = field(
+        default=None,
+    )
+    lora_dropout: Optional[str] = field(
+        default=None,
     )
     config_overrides: Optional[str] = field(
         default=None,
@@ -416,6 +427,16 @@ def main():
         n_params = sum({p.data_ptr(): p.numel() for p in model.parameters()}.values())
         logger.info(f"Training new model from scratch - Total size={n_params/2**20:.2f}M params")
 
+    # PEFT, LoRA setting
+    peft_config = LoraConfig(
+        r=model_args.lora_r,
+        lora_alpha=model_args.lora_alpha,
+        target_modules=["q_proj", "v_proj"],
+        lora_dropout=model_args.lora_dropout,
+        bias="none",
+        task_type="CAUSAL_LM",
+    )
+    model = get_peft_model(model, peft_config)
     # We resize the embeddings only when necessary to avoid index errors. If you are creating a model from scratch
     # on a small vocab and want a smaller embedding size, remove this test.
     embedding_size = model.get_input_embeddings().weight.shape[0]
