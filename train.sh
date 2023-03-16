@@ -2,8 +2,8 @@ accelerate launch --config_file config.yaml train.py \
     --model_name_or_path $model_path \
     --dataset_name alpaca_data.hf \
     --is_dataset_from_disk True \
-    --per_device_train_batch_size 8 \
-    --per_device_eval_batch_size 8 \
+    --per_device_train_batch_size 2 \
+    --per_device_eval_batch_size 2 \
     --lora_r 4 \
     --lora_alpha 16 \
     --lora_dropout 0.05 \
