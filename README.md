@@ -17,8 +17,10 @@ pip install -r requirements.txt
 ```sh
 # Use PEFT, LORA
 accelerate launch --config_file peft_config.yaml finetune.py
+```
 
-# Use Huggingface Arguments for controll all situations during training.
+or you can use Huggingface Arguments for controll all situations during training. All the HFArguments can be used.
+```sh
 # You can use train.sh.
 # Stil updating...
 python train.py \
