@@ -96,3 +96,4 @@ model.config.use_cache = False
 trainer.train(resume_from_checkpoint=False)
 
 model.save_pretrained(output_dir)
+model.save_model()
