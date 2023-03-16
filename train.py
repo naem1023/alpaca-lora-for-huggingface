@@ -82,10 +82,10 @@ class ModelArguments:
         default=None,
         metadata={"help": "If training from scratch, pass a model type from the list: " + ", ".join(MODEL_TYPES)},
     )
-    lora_r: Optional[float] = field(
+    lora_r: Optional[int] = field(
         default=None,
     )
-    lora_alpha: Optional[float] = field(
+    lora_alpha: Optional[int] = field(
         default=None,
     )
     lora_dropout: Optional[float] = field(
