@@ -8,4 +8,5 @@ python train.py \
     --bf16_full_eval True \
     --do_train \
     --do_eval \
-    --output_dir $output_dir
+    --output_dir $output_dir \
+    --overwrite_output_dir
