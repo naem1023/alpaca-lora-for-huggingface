@@ -1,6 +1,6 @@
 torch
-transformers
 # git+https://github.com/zphang/transformers@ef61b1ba1a8ee9fd354b640b059c3474b676c0c5
+git+https://github.com/huggingface/transformers@97a3d16a6941294d7d76d24f36f26617d224278e
 sentencepiece
 loralib
 lora
