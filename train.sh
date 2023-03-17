@@ -1,4 +1,4 @@
-accelerate launch --config_file config.yaml train.py \
+accelerate launch --config_file peft_config.yaml train.py \
     --model_name_or_path $model_path \
     --dataset_name alpaca_data.hf \
     --is_dataset_from_disk True \
