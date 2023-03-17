@@ -8,7 +8,7 @@ deepspeed_config:
   zero3_save_16bit_model: true
   zero_stage: 3
 distributed_type: DEEPSPEED
-downcast_bf16: 'yes'
+downcast_bf16: 'no'
 dynamo_backend: 'NO'
 fsdp_config: {}
 machine_rank: 0

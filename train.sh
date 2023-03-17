@@ -9,7 +9,6 @@ accelerate launch --config_file config.yaml train.py \
     --lora_dropout 0.05 \
     --bf16 True \
     --bf16_full_eval True \
-    --torch_dtype bfloat16 \
     --do_train \
     --do_eval \
     --output_dir $output_dir \
