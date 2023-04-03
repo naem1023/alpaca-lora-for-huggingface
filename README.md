@@ -1,5 +1,8 @@
 #  😊 Alpaca-lora for huggingface implementation using Deepspeed and FullyShardedDataParallel 😊
 
+
+## Update Logs
+!!! There's some error when you update torch to 2.0. I'll fix it as soon as possible !!!
 ## Features
 - Multi-GPU training using DeepSpeed and Fully sharded Data Parallel with Accelerate
 - Training LLaMA using huggingface, lora, peft
